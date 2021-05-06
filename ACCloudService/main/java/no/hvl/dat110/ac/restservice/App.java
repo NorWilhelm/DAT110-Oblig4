@@ -15,14 +15,12 @@ public class App {
 
 	public static void main(String[] args) {
 
-		if (args.length > 0) {
+		if (args.length > 0)
 			port(Integer.parseInt(args[0]));
-		} else {
+		else
 			port(8080);
-		}
 
 		// objects for data stored in the service
-
 		accesslog = new AccessLog();
 		accesscode = new AccessCode();
 
@@ -48,6 +46,7 @@ public class App {
 			accesslog.add(message.getMessage());
 			return gson.toJson(accesslog.log);
 		});
+
 		get("/accessdevice/log/:id", (req, res) -> {
 			Gson gson = new Gson();
 			accesscode = gson.fromJson(req.body(), AccessCode.class);
@@ -65,7 +64,7 @@ public class App {
 			return gson.toJson(accesscode.getAccesscode());
 		});
 
-		delete("/accessdevice/code", (req, res) -> {
+		delete("/accessdevice/log", (req, res) -> {
 			Gson gson = new Gson();
 			accesslog.clear();
 			return gson.toJson("Log deleted");
