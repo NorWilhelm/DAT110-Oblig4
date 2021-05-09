@@ -64,6 +64,8 @@ public class RestClient {
 			String responseBody = response.body().string();
 			System.out.println("ResponseBody: ");
 			System.out.println(responseBody);
+
+			// JsonObject responseAsJSON = JsonParser.parseString(responseBody).getAsJsonObject(); // Testing...
 			code = gson.fromJson(JsonParser.parseString(responseBody), AccessCode.class);
 		} catch (IOException e) {
 			e.printStackTrace();
